@@ -10,7 +10,7 @@ namespace Productos
     {
         private string _codigoDeBarra;
         private string _marca;
-        private float  _precio;
+        private float _precio;
         public Producto(string marca)
         {
             this._marca = marca;
@@ -20,13 +20,13 @@ namespace Productos
             this._codigoDeBarra = codigoDeBarra;
         }
         public Producto(string marca, string codigoDeBarra, float precio) : this(marca, codigoDeBarra)
-        {           
-            this._precio         = precio;
+        {
+            this._precio = precio;
         }
 
         public static string MostrarProducto(Producto p)
         {
-            return String.Format("MARCA {0} CODIGO {1} PRECIO {2} ", p._marca, (string)p, p._precio);
+            return String.Format("MARCA {0} CODIGO {1} PRECIO {2} ", p.GetMarca, (string)p, p.GetPrecio);
         }
 
         /*************************************************************/
@@ -49,37 +49,37 @@ namespace Productos
 
         public static bool operator ==(Producto p1, Producto p2)
         {
+            bool retorno = false;
             if (!(p1 is null || p2 is null))
             {
-                return (p1.GetMarca == p2.GetMarca && p1._codigoDeBarra == p2._codigoDeBarra);
+                retorno = (p1.GetMarca == p2.GetMarca && p1._codigoDeBarra == p2._codigoDeBarra);
             }
-            return false;
+            return retorno;
         }
-
         public static bool operator !=(Producto p1, Producto p2)
         {
-            
-               return !(p1.GetMarca == p2.GetMarca);   
-          
-        } 
+            return !(p1.GetMarca == p2.GetMarca);
+        }
         public static bool operator ==(Producto p1, string marca)
         {
+            bool retorno = false;
             if (!(p1 is null || marca is null))
             {
                 if (p1.GetMarca == marca)
                 {
-                    return true;
+                    retorno = true;
                 }
             }
-            return false;
+            return retorno;
         }
         public static bool operator !=(Producto p1, string marca)
-        {            
-                if (p1.GetMarca == marca)
-                {
-                    return true;
-                }            
-            return false;
+        {
+            bool retorno = false;
+            if (p1.GetMarca == marca)
+            {
+                retorno = true;
+            }
+            return retorno;
         }
 
         #endregion SOBRECARGAS Operadores
@@ -90,7 +90,7 @@ namespace Productos
 
         public static implicit operator string(Producto p1)
         {
-            if(!(p1 is null))
+            if (!(p1 is null))
             {
                 return p1._codigoDeBarra;
             }
