@@ -8,7 +8,6 @@ namespace Productos
 {
     public class Estante
     {
-
         private Producto[] _productos;
         private int _ubicacionEstante;
 
@@ -16,14 +15,13 @@ namespace Productos
         {
             _productos = new Producto[capacidad];
         }
-        public Estante(int capacidad,int ubicacion) : this(capacidad)
+        public Estante(int capacidad, int ubicacion) : this(capacidad)
         {
-           _ubicacionEstante = ubicacion;
+            _ubicacionEstante = ubicacion;
         }
-
-        Producto[] GetProductos()
+        private Producto[] GetProductos
         {
-            return _productos;
+            get { return _productos; }
         }
         public static string MostrarEstante(Estante e)
         {
@@ -47,33 +45,32 @@ namespace Productos
 
         public static bool operator ==(Estante e, Producto p)
         {
-            if(!(e is null && p is null))
+            if (!(e is null && p is null))
             {
-                for (int i = 0; i < e._productos.Length; i++)
+
+                for (int i = 0; i < e.GetProductos.Length; i++)
                 {
-                    if (e._productos[i] == p)
+                    if (e.GetProductos[i] == p)
                     {
                         return true;
                     }
                 }
-            }   
+            }
             return false;
         }
-
         public static bool operator !=(Estante e, Producto p)
         {
-                return !(e == p);            
+            return !(e == p);
         }
-
         public static bool operator +(Estante e, Producto p)
         {
             if (e != p)
             {
-                for (int i = 0; i < e._productos.Length; i++)
+                for (int i = 0; i < e.GetProductos.Length; i++)
                 {
-                    if (e._productos[i] is null)
+                    if (e.GetProductos[i] is null)
                     {
-                        e._productos[i] = p;
+                        e.GetProductos[i] = p;
                         return true;
 
                     }
